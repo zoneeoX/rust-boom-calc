@@ -8,23 +8,60 @@ import satchel from "../assets/picture/satchel.png";
 const Modal = ({ setIsModal }) => {
   const [items, setItems] = useState([
     {
-      name: "c4",
+      name: "C4",
       picture: c4,
+      material: [
+        {
+          metal_fragments: 200,
+          tech_trash: 2,
+          sulfur: 2200,
+          cloth: 20,
+          animal_fat: 45,
+          charcoal: 3000,
+        },
+      ],
     },
     {
-      name: "explosive",
+      name: "Explosive Ammo",
       picture: explosive,
+      material: [
+        {
+          metal_fragments: 10,
+          sulfur: 50,
+          charcoal: 60,
+        },
+      ],
     },
     {
-      name: "rocket",
+      name: "Rocket",
       picture: rocket,
+      material: [
+        {
+          metal_fragmnets: 100,
+          metal_pipe: 2,
+          sulfur: 1400,
+          charcoal: 1950,
+          cloth: 8,
+          animal_fat: 24,
+        },
+      ],
     },
     {
-      name: "satchel",
+      name: "Satchel",
       picture: satchel,
+      material: [
+        {
+          metal_fragments: 80,
+          rope: 1,
+          sulfur: 480,
+          charcoal: 720,
+          cloth: 10,
+        },
+      ],
     },
   ]);
   const [image, setImage] = useState("");
+  const [selectedBoom, setSelectedBoom] = useState();
   const [active, setActive] = useState(false);
 
   function closeModal() {
@@ -33,7 +70,12 @@ const Modal = ({ setIsModal }) => {
 
   function imageSet(e) {
     setImage(e.target.src);
-    setActive((prevState) => !prevState);
+    const targetedItem = e.target.alt;
+    const currentObject = items.find((x) => x.name == targetedItem);
+
+    //Grabs and set the object from array[item]
+    setSelectedBoom(currentObject);
+    setActive(true);
   }
 
   return (
@@ -61,18 +103,22 @@ const Modal = ({ setIsModal }) => {
               />
             </div>
           ))}
-          <div className="flex flex-row gap-2">
+        </div>
+        {active ? (
+          <div className="flex flex-row mt-10">
             <img
               src={image}
               alt=""
-              className="w-8 p-1 cursor-pointer bg-white/10 hover:bg-white/20 border-r-[1px] border-white/50"
+              className="w-8 p-1 cursor-pointer bg-white/10 hover:bg-white/20 "
             />
             <input
               type="text"
               className="col-span-4 p-1 font-sans bg-neutral-700 active:outline-none focus:outline-none"
             />
           </div>
-        </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
