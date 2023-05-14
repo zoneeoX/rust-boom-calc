@@ -5,7 +5,7 @@ import explosive from "../assets/picture/explosive.png";
 import rocket from "../assets/picture/rocket.png";
 import satchel from "../assets/picture/satchel.png";
 
-const Modal = ({ setIsModal }) => {
+const Modal = ({ setIsModal, setSelectedBoom }) => {
   const [items, setItems] = useState([
     {
       name: "C4",
@@ -61,7 +61,6 @@ const Modal = ({ setIsModal }) => {
     },
   ]);
   const [image, setImage] = useState("");
-  const [selectedBoom, setSelectedBoom] = useState();
   const [active, setActive] = useState(false);
 
   function closeModal() {

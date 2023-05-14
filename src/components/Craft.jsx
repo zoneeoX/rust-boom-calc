@@ -3,6 +3,7 @@ import Modal from "./Modal.jsx";
 
 const Craft = () => {
   const [isModal, setIsModal] = useState(false);
+  const [selectedBoom, setSelectedBoom] = useState();
   const [inputList, setInputList] = useState([
     {
       id: 1,
@@ -37,9 +38,15 @@ const Craft = () => {
     setIsModal((prevState) => !prevState);
   }
 
+  console.log(selectedBoom);
+
   return (
     <>
-      {isModal ? <Modal setIsModal={setIsModal} /> : ""}
+      {isModal ? (
+        <Modal setIsModal={setIsModal} setSelectedBoom={setSelectedBoom} />
+      ) : (
+        ""
+      )}
       <div className="bg-[#1B1B1B] w-[40vw] min-h-[20vh] p-10 font-Bebas">
         <div>
           <h1 className="text-2xl tracking-wider cursor-default select-none text-white/50">
