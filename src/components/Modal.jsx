@@ -1,65 +1,64 @@
 import React, { useState } from "react";
 
-import c4 from "../assets/picture/c4.png";
-import explosive from "../assets/picture/explosive.png";
-import rocket from "../assets/picture/rocket.png";
-import satchel from "../assets/picture/satchel.png";
 
-const Modal = ({ setIsModal, setSelectedBoom }) => {
-  const [items, setItems] = useState([
-    {
-      name: "C4",
-      picture: c4,
-      material: [
-        {
-          metal_fragments: 200,
-          tech_trash: 2,
-          sulfur: 2200,
-          cloth: 20,
-          animal_fat: 45,
-          charcoal: 3000,
-        },
-      ],
-    },
-    {
-      name: "Explosive Ammo",
-      picture: explosive,
-      material: [
-        {
-          metal_fragments: 10,
-          sulfur: 50,
-          charcoal: 60,
-        },
-      ],
-    },
-    {
-      name: "Rocket",
-      picture: rocket,
-      material: [
-        {
-          metal_fragmnets: 100,
-          metal_pipe: 2,
-          sulfur: 1400,
-          charcoal: 1950,
-          cloth: 8,
-          animal_fat: 24,
-        },
-      ],
-    },
-    {
-      name: "Satchel",
-      picture: satchel,
-      material: [
-        {
-          metal_fragments: 80,
-          rope: 1,
-          sulfur: 480,
-          charcoal: 720,
-          cloth: 10,
-        },
-      ],
-    },
-  ]);
+const Modal = ({ setIsModal, setSelectedBoom, setBoomAmount, items, setItems, setInputList, currentInput, inputList, boomAmount, selectedBoom }) => {
+  // const [items, setItems] = useState([
+  //   {
+  //     name: "C4",
+  //     picture: c4,
+  //     material: [
+  //       {
+  //         metal_fragments: 200,
+  //         tech_trash: 2,
+  //         sulfur: 2200,
+  //         cloth: 20,
+  //         animal_fat: 45,
+  //         charcoal: 3000,
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     name: "Explosive Ammo",
+  //     picture: explosive,
+  //     material: [
+  //       {
+  //         metal_fragments: 10,
+  //         sulfur: 50,
+  //         charcoal: 60,
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     name: "Rocket",
+  //     picture: rocket,
+  //     material: [
+  //       {
+  //         metal_fragmnets: 100,
+  //         metal_pipe: 2,
+  //         sulfur: 1400,
+  //         charcoal: 1950,
+  //         cloth: 8,
+  //         animal_fat: 24,
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     name: "Satchel",
+  //     picture: satchel,
+  //     material: [
+  //       {
+  //         metal_fragments: 80,
+  //         rope: 1,
+  //         sulfur: 480,
+  //         charcoal: 720,
+  //         cloth: 10,
+  //       },
+  //     ],
+  //   },
+  // ]);
+
+
+
   const [image, setImage] = useState("");
   const [active, setActive] = useState(false);
 
@@ -77,8 +76,27 @@ const Modal = ({ setIsModal, setSelectedBoom }) => {
     setActive(true);
   }
 
+  function setAmount(e){
+    setBoomAmount(e.currentTarget.value);
+  }
+
+  function saved(){
+    setInputList(inputList.filter(item => item.id !== currentInput.id));
+    
+    setInputList(oldArray => [...oldArray, {
+      id: currentInput.id,
+      name:  "item " + (currentInput.id),
+      image: image,
+      currentItem: selectedBoom,
+      amountItem: boomAmount,
+    }])
+    
+    setIsModal(false);
+  }
+
+
   return (
-    <div className="fixed flex items-center justify-center w-screen h-screen p-10 bg-black/20 backdrop-blur-md font-Bebas">
+    <div className="fixed flex items-center justify-center w-screen h-screen p-10 bg-black/20 backdrop-blur-md font-Bebas z-50">
       <div className="bg-neutral-800 min-w-[30vw] h-fit p-10">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl tracking-wider opacity-50">
@@ -108,11 +126,13 @@ const Modal = ({ setIsModal, setSelectedBoom }) => {
             <img
               src={image}
               alt=""
-              className="w-8 p-1 cursor-pointer bg-white/10 hover:bg-white/20 "
+              className="w-8 p-1 cursor-pointer bg-white/10 hover:bg-white/20"
+              onClick={saved}
             />
             <input
               type="text"
               className="col-span-4 p-1 font-sans bg-neutral-700 active:outline-none focus:outline-none"
+              onChange={(e) => setAmount(e)}
             />
           </div>
         ) : (
