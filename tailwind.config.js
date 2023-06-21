@@ -5,6 +5,9 @@ export default {
     extend: {
       fontFamily: {
         Bebas: "Bebas Neue",
+        Montserrat: "Montserrat",
+        Roboto: "Roboto",
+        Raleway: "Raleway",
       },
     },
   },
