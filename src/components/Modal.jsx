@@ -122,7 +122,6 @@ const Modal = ({
 
   function saved() {
     setInputList(inputList.filter((item) => item.id !== currentInput.id));
-
     // for(let key of Object.keys(selectedBoom.material)){
     //   setTotalPerBoom(oldArr => [...oldArr, boomAmount * selectedBoom.material[key]])
     // }
@@ -143,6 +142,8 @@ const Modal = ({
     //     console.log(total[key] = selectedBoom.material[key] * boomAmount);
     // }
 
+    
+
     setInputList((oldArray) => [
       ...oldArray,
       {
@@ -152,14 +153,44 @@ const Modal = ({
         currentItem: selectedBoom.name,
         materials: multipliedByAmount,
         amountItem: boomAmount,
-        stone_wall: boomAmount / (selectedBoom.name === 'Rocket' ? 4 : selectedBoom.name === 'C4' ? 2 : selectedBoom.name === 'Satchel' ? 10 : selectedBoom.name === 'Explosive Ammo' ? 186 : "" ),
-        metal_wall: boomAmount / (selectedBoom.name === 'Rocket' ? 8 : selectedBoom.name === 'C4' ? 4 : selectedBoom.name === 'Satchel' ? 18 : selectedBoom.name === 'Explosive Ammo' ? 417 : "" ),
-        high_wall: boomAmount / (selectedBoom.name === 'Rocket' ? 15 : selectedBoom.name === 'C4' ? 8 : selectedBoom.name === 'Satchel' ? 35 : selectedBoom.name === 'Explosive Ammo' ? 800 : "" ),
-
+        stone_wall:
+          boomAmount /
+          (selectedBoom.name === "Rocket"
+            ? 4
+            : selectedBoom.name === "C4"
+            ? 2
+            : selectedBoom.name === "Satchel"
+            ? 10
+            : selectedBoom.name === "Explosive Ammo"
+            ? 186
+            : ""),
+        metal_wall:
+          boomAmount /
+          (selectedBoom.name === "Rocket"
+            ? 8
+            : selectedBoom.name === "C4"
+            ? 4
+            : selectedBoom.name === "Satchel"
+            ? 18
+            : selectedBoom.name === "Explosive Ammo"
+            ? 417
+            : ""),
+        high_wall:
+          boomAmount /
+          (selectedBoom.name === "Rocket"
+            ? 15
+            : selectedBoom.name === "C4"
+            ? 8
+            : selectedBoom.name === "Satchel"
+            ? 35
+            : selectedBoom.name === "Explosive Ammo"
+            ? 800
+            : ""),
       },
     ]);
 
     setMatArr((oldArray) => [...oldArray, selectedBoom.material]);
+    console.log(inputList);
 
     setIsModal(false);
   }

@@ -99,10 +99,6 @@ const Craft = () => {
     },
   ]);
 
-  function log(a) {
-    console.log(a);
-  }
-
   // let sum = inputList.reduce(function(prev, current) {
   //   return prev + + (current.currentItem?.material?.charcoal);
   //   // log(current.currentItem.material?.charcoal * current?.amountItem)
@@ -111,8 +107,6 @@ const Craft = () => {
   // log(sum);
 
   //object loop and
-
-  console.log(inputList);
 
   useEffect(() => {
     // setA(Object.entries(totals));
@@ -179,8 +173,6 @@ const Craft = () => {
 
     setIsModal((prevState) => !prevState);
   }
-
-  console.log(totals);
 
   // Add up if key is === key else dont
 
@@ -339,18 +331,27 @@ const Craft = () => {
                           {item?.materials ? "(" + item.currentItem + ")" : ""}
                         </p>
                       </h1>
-                      <h1 className="text-green-400 mb-4 bg-zinc-800 p-2 rounded flex items-center flex-row gap-1">
-                        {item.stone_wall.toFixed(1)}
-                        <span className="">Destroyed Stone Wall </span>
-                      </h1>
-                      <h1 className="text-green-400 mb-4 bg-zinc-800 p-2 rounded flex items-center flex-row gap-1">
-                        {item.metal_wall.toFixed(1)}
-                        <span className="">Destroyed Metal Wall </span>
-                      </h1>
-                      <h1 className="text-green-400 mb-4 bg-zinc-800 p-2 rounded flex items-center flex-row gap-1">
-                        {item.high_wall.toFixed(1)}
-                        <span className="">Destroyed Armored Wall </span>
-                      </h1>
+                      <div className="font-Roboto my-2 text-xl bg-zinc-800 p-2 w-60 rounded">
+                        <h1 className="text-green-500 rounded flex items-center flex-row gap-1">
+                          <span className="w-40">Stone Wall </span>
+                          <span className="text-white/30">
+                            {item.stone_wall.toFixed(1)}
+                          </span>
+                        </h1>
+                        <h1 className="text-green-500 rounded flex items-center flex-row gap-1">
+                          <span className="w-40">Metal Wall </span>
+                          <span className="text-white/30">
+                            {item.metal_wall.toFixed(1)}
+                          </span>
+                        </h1>
+                        <h1 className="text-green-500 rounded flex items-center flex-row gap-1">
+                          <span className="w-40">Armored Wall </span>
+                          <span className="text-white/30">
+                            {" "}
+                            {item.high_wall.toFixed(1)}
+                          </span>
+                        </h1>
+                      </div>
                     </div>
                   </div>
                   <div></div>
